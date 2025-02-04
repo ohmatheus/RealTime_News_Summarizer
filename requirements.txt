@@ -7,6 +7,7 @@ numpy
 scikit-learn
 matplotlib
 langchain
+langchain_community
 #deepseek-cpu
 streamlit
 beautifulsoup4
