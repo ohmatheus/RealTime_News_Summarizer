@@ -1,0 +1,14 @@
+transformers==4.47.1
+#peft
+#accelerate
+#bitsandbytes==0.45.0
+pandas
+numpy
+scikit-learn
+matplotlib
+langchain
+#deepseek-cpu
+streamlit
+beautifulsoup4
+python-dotenv
+newspaper3k
