@@ -1,6 +1,6 @@
 transformers==4.47.1
 #peft
-#accelerate
+accelerate
 #bitsandbytes==0.45.0
 pandas
 numpy
@@ -8,8 +8,13 @@ scikit-learn
 matplotlib
 langchain
 langchain_community
+langchain_experimental
+langchain_huggingface
 #deepseek-cpu
 streamlit
 beautifulsoup4
 python-dotenv
 newspaper3k
+chardet
+sentence_transformers
+bitsandbytes
