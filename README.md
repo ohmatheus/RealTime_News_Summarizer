@@ -12,10 +12,13 @@ For the sake of this project, this will stay a POC and I would use all the least
 
 ### No link to application
 I have not 
+Its already taking quite some time on my rtx 3090 (~1 minute) so i didn't wanted to find 'the right' provider to host this project a low cost and wait several minutes for deepseek to answer on a cpu. It is just a little project and is far from being ready for production. So, only images for presentation (sorry).
 
-# RAG System (simple)
+# What it does
 
 
+
+# How it's done : RAG System (simple)
 ## 1. Scrapping 'Le Monde'
 
 ## 2. Vector Database
