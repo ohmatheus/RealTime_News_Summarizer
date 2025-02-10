@@ -24,6 +24,7 @@ Using General Text Embeddings (GTE) model ("thenlper/gte-large") as text embbede
 
 Using facebook's FAISS as Nearest Neighbor search algorithm with cosine similarity. 
 
+
 ## 3. Reader - LLM
 Deepseek  
 `<think></think>` tokens
