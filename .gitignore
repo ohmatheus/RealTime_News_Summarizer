@@ -172,3 +172,5 @@ cython_debug/
 sandbox/corpus/
 sandbox/soup.txt
 sandbox/corpus_links/
+corpus/
+corpus_links/
