@@ -16,26 +16,40 @@ I have not uploaded this application in any cloud service (mainly for ressource 
 Its already taking quite some time on my rtx 3090 (~1 minute) so i didn't wanted to find 'the right' provider to host this project a low cost and wait several minutes for deepseek to answer on a cpu. It is just a little project and is far from being ready for production. So, only images for presentation, you can also find some saved HTML page in the /exemples folder.
 
 # What it does
-[app](./images/app_base.png)
 
+The app load and scrap all articles from [LeMonde.fr](https://www.lemonde.fr/) on the present date and the day before.
+Then chunk those articles, and ask for the user topics he would like news on. This topic is inserted in a more structured prompt (alongside articles on the subject) and this prompt is given to the llm model. Finnally we show the response, and the source links that was given to the prompt (related to the topic).  
+
+<img src="./images/app_base.png" width="75%" height="75%">  
+
+## Exemples
+### 'Sports'
+### 'Trump'
+
+### Final thoughts
+This app is very error prone. The model completely hallucinates some parts and sometimes create informations that does not exists, linking the topic with articles that was given to him in the context, where there was no link. This could be mitigated by using a better prompt, a better selection of the articles given to him, or using a more powerfull model probably, but for now we cannot trust this application.
 
 # How it's done : RAG System (simple)
 ## 1. Scrapping 'Le Monde'
+Creating corpus
+
+## Chunks
 
 ## 2. Vector Database
 
-Using General Text Embeddings (GTE) model ("thenlper/gte-large") as text embbeder via `HuggingFaceEmbeddings (langchain)`. It seemed to me to be a good compromise between performance and execution speed.
+Using General Text Embeddings (GTE) model ("thenlper/gte-large") as text embbeder via `HuggingFaceEmbeddings (langchain)`. It seemed to me to be a good compromise between performance and execution speed. 
+As the source text is in french, using 'dangvantuan/sentence-camembert-large' is also an option for embeddings because it was train mainly on french data.  
 
-Using facebook's FAISS as Nearest Neighbor search algorithm with cosine similarity. 
+Using facebook's [FAISS](https://github.com/facebookresearch/faiss) as Nearest Neighbor search algorithm with cosine similarity.  
 
 
 ## 3. Reader - LLM
+"deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" quantized 4-bit  
 Deepseek  
-`<think></think>` tokens
-prompt
+`<think></think>` tokens removed  
+prompt  
 
 
-"deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" quantized 4-bit
 
 ## 4. Results
 
