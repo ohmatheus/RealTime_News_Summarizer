@@ -199,6 +199,15 @@ def get_llm_pipeline():
         )
     return llm
 
+@st.cache_resource
+def get_vector_database():
+    documents = get_splitted_documents()
+    embedding_model = get_embedding_model()
+    
+    vector_database = FAISS.from_documents(
+        documents, embedding_model, distance_strategy=DistanceStrategy.COSINE
+    )
+    return vector_database
 
 #-------------------------------------------------------------------
 @st.cache_resource
@@ -207,15 +216,7 @@ def init():
     
     cache_corpus()
     
-    documents = get_splitted_documents()
-    embedding_model = get_embedding_model()
-    
-    vector_database = FAISS.from_documents(
-        documents, embedding_model, distance_strategy=DistanceStrategy.COSINE
-    )
-    
-    if 'vector_database' not in st.session_state:
-        st.session_state['vector_database'] = vector_database
+    vector_database = get_vector_database()
     
     get_llm_pipeline()
     
@@ -365,7 +366,7 @@ if prompt := st.chat_input("Enter a subject you would like news on"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
     # --- Do magic here ---
-    vector_database = st.session_state.vector_database
+    vector_database = get_vector_database()
     #st.write(vector_database)
     
     subject = prompt
@@ -379,11 +380,11 @@ if prompt := st.chat_input("Enter a subject you would like news on"):
     metas = get_source_link_from_relevant_docs(relevant_docs)
     
     if metas:
-        links_str = "  \n  \nLinks :  \n"
+        links_str = "  \n  \nSource Links :  \n"
         for meta in metas:
             title = meta["title"]
             link = meta["link"]
-            links_str = links_str + f"[{title}]({link})" + "  \n"
+            links_str = "- " + links_str + f"[{title}]({link})" + "  \n"
 
         answer = answer + links_str
 

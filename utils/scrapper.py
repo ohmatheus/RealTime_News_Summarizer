@@ -80,7 +80,7 @@ def list_themes(links):
     themes = []
     for link in links:
         theme = extract_theme(link)
-        if theme is not None:
+        if theme is not None and theme != "podcasts":
             themes.append(theme)
     return themes
 
